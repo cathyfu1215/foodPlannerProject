@@ -109,12 +109,15 @@ I will have two views: the sidebar and the main display.
 * In the main display view, it only renders the result of the user's input. Users can sort the rendered result.
 
 ## Environmental Setup
-1. Clone the project repository / Download the zip file of the project
-2. Navigate to the project directory
+* 1. Clone the project repository / Download the zip file of the project
+* 2. Navigate to the project directory
+     <br>
    ```cd foodPlannerProject```
-3. Install the dependencies using pip
+* 3. Install the dependencies using pip
+      <br>
    ```pip  install -r requirements.txt``` or ```pip3 install -r requirements.txt```
-4. Run the app.py script
+* 4. Run the app.py script
+      <br>
    ```streamlit run app.py``` or   ```python3 -m streamlit run app.py```
 
 ## Code Highlights
@@ -147,4 +150,75 @@ I am proud of finding a reliable API, reading the documentation carefully and de
 ]
 ```
 
+### c. Food Nutrient Amount Data
+```
+[
+ {
+   "food_code":4,             # the unique key
+   "nutrient_value":24.69398, # the info I need
+   "standard_error":0,
+   "number_observation":0,
+   "nutrient_name_id":815,    # the unique key
+   "nutrient_web_name":"Dietary folate equivalents, DFE",
+   "nutrient_source_id":4
+ }
+]
+```
 
+The code I used to join them:
+```
+def get_nutrient_list(food_nutient_amount: list) -> list:
+    '''
+    This function consumes a list of nutrients of a given food,
+    create objects of the Nutrient class, put them into a list
+    and return the list.
+    '''
+    nutrients_list = []
+    for item in food_nutient_amount:
+        nutrient_item = Nutrient(item['nutrient_name_id'],
+                                 item['nutrient_web_name'],
+                                 item['nutrient_value'])
+        # match the right unit to the right nutrient
+        nutrients = fetch_data_functions.get_nutrient_data()
+        for nutri in nutrients:
+            if nutri['nutrient_name_id'] == nutrient_item.get_id():
+                nutrient_item.set_unit(nutri['unit'])
+        nutrients_list.append(nutrient_item)
+    return nutrients_list
+```
+I am also proud that I used what I learned from my concept presentation - Regular Expression to match my data with the user's text input.
+```
+def get_food_list(user_input_food: str) -> list:
+    '''
+    This function consumes user's choices of food and return
+    a list of all the matches in the food data we have fetched from the API
+    before
+    Later, user can choose a specific food (and the cooking method) and
+    get the details of the nutrients
+    '''
+    # fetch all the food name/description data from API
+    st.session_state['all_food_list'] = fetch_data_functions.get_food_data()
+    # match food names with user input
+    match_food_list = []
+
+    for item in st.session_state['all_food_list']:
+        food_item = Food(item['food_code'], item['food_description'])
+        pattern = re.compile(user_input_food, flags=re.IGNORECASE)
+        if re.search(pattern, food_item.food_description) is not None:
+            match_food_list.append(item)
+    return match_food_list
+```
+
+## Next Steps
+If I have more time to work on my project:
+
+#### I will implement a “food planner” in my app.
+* Users can log in
+* Users can add the food they have selected to a “cart”
+* Users can adjust the quantity of food in the cart.
+* Need to add another view for this feature that displays the cart.
+
+#### I also want to add filters to the food selection process.
+* In reality, there are people with special needs, for example, people who have to control their sugar / salt intake.
+* I want to add methods for my Food class so it will show how much sugar / salt is inside this food.
+* Users with special needs can filter out the food they need to avoid, and build a healthy food plan.
