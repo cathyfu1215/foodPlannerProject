@@ -6,8 +6,7 @@ I care about eating healthily and I hope my project can help people like me. Thi
 ## Description of the REST API(s)
 * REST API: Canadian Nutrient (CNF) API
 * URL: https://food-nutrition.canada.ca/api/canadian-nutrient-file
-* Documentation: https://produits-sante.canada.ca/api/documentation/cnf-
-documentation-en.html
+* Documentation: https://produits-sante.canada.ca/api/documentation/cnf-documentation-en.html
 * Endpoints:
   * `/food/?lang=fr`
     - get a list of foods in French
@@ -34,6 +33,17 @@ food nutrient amount details
 * Combine the unit information and the specific nutrient amount details, create a list
 of Nutrient objects
 * Display the nutrient objects
+
+
+## Overall look
+#### English View
+<img width="854" alt="Screenshot 2024-05-17 at 6 39 37 PM" src="https://github.com/cathyfu1215/foodPlannerProject/assets/87288821/ef9a6502-aa58-450d-9c75-1eb713dedfbd">
+
+#### French View
+<img width="785" alt="Screenshot 2024-05-17 at 6 39 47 PM" src="https://github.com/cathyfu1215/foodPlannerProject/assets/87288821/83d311c8-d8ad-4719-8b8d-97c188d6fb94">
+
+
+
 
 ## Features & Interactions
 
