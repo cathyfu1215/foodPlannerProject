@@ -3,9 +3,22 @@
 ## Project Summary
 I care about eating healthily and I hope my project can help people like me. This is a simple project that takes the user's choice of food and displays reliable nutrient values of the food. The data I used is from Open Data, Government Canada. This project supports food searching and nutrient information displaying in both English and French.
 
+## Optimization Problem
 Additionally, I developed a [Python program](https://github.com/cathyfu1215/foodPlannerProject/blob/main/cathy_diet.py) that utilizes Linear Programming concepts and Google OR-tools to minimize the cost of nutritionally balanced meals. Using data from the Government of Canada and Statistics Canada, this marks the future direction of my food planner project. I find solving real-life optimization problems to be incredibly meaningful.
 
 Read my [paper](https://github.com/cathyfu1215/foodPlannerProject/blob/main/Cathy_Diet_Problem_paper.pdf) to find more.
+
+### My Presentation Slides for the Optimization Problem
+| Image                                                              | Title      |
+|--------------------------------------------------------------------|-----------|
+<img src="assets/1.png" alt="Records" height="400" width="800">|Introduction
+<img src="assets/2.png" alt="Records" height="400" width="800">|Data Source
+<img src="assets/3.png" alt="Records" height="400" width="800">|Sample Data
+<img src="assets/4.png" alt="Records" height="400" width="800">|Formula
+<img src="assets/5.png" alt="Records" height="400" width="800">|OR-Tools
+<img src="assets/6.png" alt="Records" height="400" width="800">|Results
+
+
 
 ## Description of the REST API(s)
 * REST API: Canadian Nutrient (CNF) API
